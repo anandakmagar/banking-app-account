@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://banking-angular-920510b7cbf3.herokuapp.com")
 public class AccountController {
     @Autowired
     private AccountService accountService;

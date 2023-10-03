@@ -6,7 +6,10 @@ import com.banking.account.enumeration.AccountStatus;
 import com.banking.account.exception.InvalidAccountNumberException;
 import com.banking.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Optional;
 import java.util.Random;
@@ -103,19 +106,18 @@ public class AccountService {
         account = accountRepository.save(account);
 
         Double balance = accountDTO.getBalance();
-//        if (balance > 0) {
-//            WebClient webClient = WebClient.create("http://localhost:8072");
-//            //WebClient webClient = WebClient.create("http://localhost:8092/transaction-service");
-//            webClient.post()
-//                    .uri("/transaction/initial-deposit/{accountNumber}/{fullName}/{balance}",
-//                            account.getAccountNumber(),
-//                            accountDTO.getFullName(),
-//                            balance
-//                    )
-//                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-//                    .exchange()
-//                    .block();
-//        }
+        if (balance > 0) {
+            WebClient webClient = WebClient.create("https://banking-transaction-91fa2632c7f6.herokuapp.com");
+            webClient.post()
+                    .uri("/transaction/initial-deposit/{accountNumber}/{fullName}/{balance}",
+                            account.getAccountNumber(),
+                            accountDTO.getFullName(),
+                            balance
+                    )
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .exchange()
+                    .block();
+        }
 
         return toAccountDTO(account);
     }

@@ -48,14 +48,17 @@ public class AccountService {
 
         return accountDTO;
     }
+
     private Long generateAccountNumber() {
         Random random = new Random();
         long minAccountNumber = 1000000000L;
         long maxAccountNumber = 9999999999L;
-        long accountNumber = random.nextLong() % (maxAccountNumber - minAccountNumber + 1) + minAccountNumber;
+
+        long accountNumber = Math.abs(random.nextLong() % (maxAccountNumber - minAccountNumber + 1) + minAccountNumber);
 
         return accountNumber;
     }
+
 
     public AccountDTO findByAccountNumber(Long accountNumber){
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);

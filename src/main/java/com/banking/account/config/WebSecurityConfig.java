@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://banking-angular-920510b7cbf3.herokuapp.com//create-account")
+                .allowedOrigins("https://banking-angular-920510b7cbf3.herokuapp.com/create-account")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 

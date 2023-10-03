@@ -1,6 +1,8 @@
-server:
-  port: 8071
+#server:
+#  port: 8071
 
+app:
+  url:
 spring:
   datasource:
     initialization-mode: always

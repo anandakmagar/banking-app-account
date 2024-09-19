@@ -1,6 +1,6 @@
 #server:
 #  port: 8071
-#
+
 app:
   url:
 spring:
